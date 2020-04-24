@@ -5,6 +5,7 @@
         release: 100,
         volume: 1,
         type: "sine",
+        wave: null,
 
 
         playFrequency: function(freq) {
@@ -30,6 +31,9 @@
             var osc = this.context.createOscillator();
             osc.frequency.setValueAtTime(freq, this.context.currentTime);
             osc.type = this.type;
+            if (!(this.wave === null)){
+              osc.setPeriodicWave(this.wave);
+            }
             osc.connect(envelope);
             osc.start();
         },
